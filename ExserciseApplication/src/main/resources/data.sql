@@ -1,0 +1,20 @@
+    SET foreign_key_checks=0;
+--     insert  into professor values (1,'wegihu','gebrehawaryat',30,'1989-09-12',null,null);
+--INSERT INTO Role VALUES (1, 'ADMIN');
+--INSERT INTO Role VALUES (2, 'DBA');
+--INSERT INTO Role VALUES (3, 'DEVELOPER');
+INSERT INTO PHONE VALUES (1,'1234','12345','7899');
+INSERT INTO PHONE VALUES (2,'1234','12345','7899');
+INSERT INTO PHONE VALUES (3,'1234','12345','7899');
+INSERT INTO PHONE VALUES (4,'1234','12345','7899');
+INSERT INTO PHONE VALUES (5,'1234','12345','7899');
+    SET foreign_key_checks=0;
+    INSERT INTO PROFESSOR VALUES (1,30,'1989-12-09','Gebrehawaryat','Wegahta',2);
+        INSERT INTO PROFESSOR VALUES (2,30,'1989-12-09','simon','Wegahta',3);
+            INSERT INTO PROFESSOR VALUES (3,98,'1989-12-09','Gebrehawaryat','Gebrela',4);
+                INSERT INTO PROFESSOR VALUES (4,2,'2018-11-11','Gebrehawaryat','Eleni',5);
+-- ===================================================
+INSERT INTO ADRESS VALUES(2,'Dallas','Tx','75243');
+INSERT INTO ADRESS VALUES(3,'Plano','Tx','75243');
+INSERT INTO ADRESS VALUES(4,'FortWorrth','Tx','75243');
+INSERT INTO ADRESS VALUES(5,'Addison','Tx','75243');

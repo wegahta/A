@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>pro</title>
+    <style>
+        .errors{
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+<h2> Professor Page</h2>
+
+<form method="post" th:action="@{/sav}" th:object="${pro}">
+
+    <p> First Name <input th:field="*{name}" th:name="name" placeholder="wegiuh">
+<!--        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="errors"></span>-->
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="errors"></span>
+    </p>
+
+    <p> Last Name <input th:field="*{lasname}" placeholder="Gebrehawaryat">
+        <span th:if="${#fields.hasErrors('lasname')}" th:errors="*{lasname}" th:errorclass="errors"></span>
+    </p>
+    <p>age<input th:field="*{age}" placeholder="30">
+        <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}" th:errorclass="errors"></span>
+    </p>
+    <p>DatOfBirth <input th:field="*{birthdate}" placeholder="30">
+        <span th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}" th:errorclass="errors"></span>
+    </p>
+    <p>Adress state: <input th:field="*{adress.sate}" placeholder="30">
+        <span th:if="${#fields.hasErrors('adress.sate')}" th:errors="*{adress.sate}" th:errorclass="errors"></span>
+    </p>
+    <p>Adress city: <input th:field="*{adress.city}" placeholder="30">
+        <span th:if="${#fields.hasErrors('adress.city')}"th:errors="*{adress.city}" th:errorclass="errors"></span>
+    </p>
+    <p>Adress zipcode: <input th:field="*{adress.zipcode}" placeholder="30">
+        <span th:if="${#fields.hasErrors('adress.zipcode')}" th:errors="*{adress.zipcode}" th:errorclass="errors"></span>
+    </p>
+<!--    <p>Phone Number: <input th:field="*{phone}" placeholder="469-510-8745">-->
+<!--    </p>-->
+
+   <p>Phone Adress
+       <select th:field="*{phone}" size="2" multiple="true">
+
+       <option th:each="phone:${phones}" th:value="${{phone}}" th:text="${phone.areacode}"></option>
+
+   </select>
+
+
+   </p>
+
+
+<!--    <label for="roles">Roles </label>-->
+<!--    <select id="roles" th:field="*{roles}" size="5" multiple="true">-->
+<!--        <option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.role}">-->
+<!--        </option>-->
+<!--    </select>-->
+
+
+    <p>Department Name <input type="submit" value="Add">
+    </p>
+</form>
+<h2> Professor Page</h2>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form method="post" th:action="@{/update}" th:object="${proobject}">
+    <input th:value="${proobject.id}" th:name="id" hidden>
+    <p ><input th:field="*{name}">firstname></p>
+    <p><input th:field="*{lasname}">lastname></p>
+    <p ><input th:field="*{age}">age></p>
+    <p ><input th:field="*{birthdate}">birthday></p>
+    <p ><input th:field="*{adress.city}">city></p>
+    <p ><input th:field="*{adress.sate}">state</p>
+    <p ><input th:field="*{adress.zipcode}">Zipcode</p>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

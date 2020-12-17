@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <link
+            href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/flatly/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-mhpbKVUOPCSocLzx2ElRISIORFRwr1ZbO9bAlowgM5kO7hnpRBe+brVj8NNPUiFs"
+            crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<h3>Product<sup>&reg;</sup> Seller</h3>
+<hr/>
+<div style="padding-top:1em;" class="container">
+    <div style="margin-bottom: 1em;">
+        <span style="font-size: 2em; color: #32a5e7;">Edit Product data with productId: [[${product.id}]]</span>
+    </div>
+
+    <form id="editProductForm" method="post" th:action="@{/product/seller/edit}" th:object="${product}"  enctype="multipart/form-data">
+        <fieldset>
+            <input type="hidden" name="id" th:value="${product.id}"/>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="productName">Product Name</label>
+                    <input id="productName" name="productName" placeholder="Product Name" type="text" class="form-control" th:value="${product.productName}">
+
+                </div> <span th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"
+                             class="alert alert-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="startingPrice">Starting Price</label>
+                        <input id="startingPrice" name="startingPrice" placeholder="Starting Price" type="text" class="form-control"
+                               th:value="${product.startingPrice}">
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="depositpayment">Set DepositPayment 10% or Greater of Starting Price</label>
+                                <input id="depositpayment" name="depositpayment" placeholder="Minimum default 10%" type="text" class="form-control"
+                                       th:value="${product.depositpayment}">
+                            </div>
+                        </div><span th:if="${#fields.hasErrors('startingPrice')}" th:errors="*{startingPrice}"
+                                    class="alert alert-danger"></span> <span style="color: red" th:text="${depomessage}"></span>
+                    </div>
+
+                </div><span th:if="${#fields.hasErrors('startingPrice')}" th:errors="*{startingPrice}"
+                            class="alert alert-danger"></span>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="description">Description</label><textarea id="description" placeholder="Product Description"
+                                                                          name="description" type="text" class="form-control" rows="2"
+                                                                          th:value="${product.description}" th:text="${product.description}"></textarea>
+
+                </div><span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                            class="alert alert-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="category">Catogories</label>
+                    <select id="category" class="form-control" th:field="*{categories}" size="3" multiple="multiple">
+                        <option th:each="category : ${categories}"
+                                th:value="${{category}}"
+                                th:text="${category.name}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="upLoadedDate">Creation date</label>
+
+                        <input id="upLoadedDate" name="upLoadedDate" readonly type="date" class="form-control"
+                               th:value="${product.upLoadedDate}">
+                        <!--                        <span th:if="${#fields.hasErrors('upLoadedDate')}" th:errors="*{upLoadedDate}"-->
+                        <!--                              class="alert alert-danger">-->
+                        <!--                            </span>-->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="dueDate">Due date</label>
+
+                        <input id="dueDate" name="dueDate" type="date" class="form-control"
+                               th:value="${product.dueDate}">
+
+                    </div>
+                </div><span th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"
+                            class="alert alert-danger">
+                            </span>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="paymentDueDate">Set Payment DueDate</label>
+
+                            <input id="paymentDueDate" name="paymentDueDate" type="date" class="form-control"
+                                   th:value="${product.paymentDueDate}">
+
+                        </div>
+                    </div><span th:if="${#fields.hasErrors('paymentDueDate')}" th:errors="*{paymentDueDate}"
+                                class="alert alert-danger">
+                            </span>
+                </div>
+                <div>
+                    <div>
+
+                        <label>Photos: </label>
+                        <input required type="file" name="files" accept="image/png, image/jpeg" multiple enctype="multipart/form-data" />
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select name="release"
+                                    id="release" type="text"
+                                    class="form-control" th:value="${product.release}">
+                                <option value="">Release Yes/No?
+                                </option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <span th:if="${#fields.hasErrors('release')}" th:errors="*{release}"
+                              class="alert alert-danger"></span>
+                    </div>
+                    <div style="float:right;">
+                        <a href="/product/seller/getall" class="btn btn-outline-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                        <button id="btnSubmit" type="submit" class="btn btn-outline-success">Update Product</button>
+                    </div>
+
+        </fieldset>
+    </form>
+</div>
+
+</div>
+
+<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>
